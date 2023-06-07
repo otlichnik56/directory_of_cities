@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -37,8 +39,9 @@ public class Main {
             }
             index = 0;
             cityList.add(city);
-            System.out.println(city);
         }
+
+        cityList.stream().sorted(Comparator.comparing(City::getName)).collect(Collectors.toList()).forEach(System.out::println);
 
         reader.close();
     }
