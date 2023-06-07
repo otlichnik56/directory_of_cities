@@ -40,10 +40,19 @@ public class Main {
             index = 0;
             cityList.add(city);
         }
-
-        cityList.stream().sorted(Comparator.comparing(City::getName)).collect(Collectors.toList()).forEach(System.out::println);
-
         reader.close();
+        sortedForNameAndDistrict(cityList);
+
     }
+
+    private static void sortedForName(List<City> cityList) {
+        cityList.stream().sorted(Comparator.comparing(City::getName)).collect(Collectors.toList()).forEach(System.out::println);
+    }
+
+    private static void sortedForNameAndDistrict(List<City> cityList) {
+        cityList.stream().sorted(Comparator.comparing(City::getDistrict).thenComparing(City::getName)).collect(Collectors.toList()).forEach(System.out::println);
+    }
+
+
 
 }
