@@ -1,10 +1,8 @@
 package org.example;
 
-import java.util.Date;
-
 public class City {
 
-    private String name; //– наименование города
+    private String name; // – наименование города
 
     private String region; // – регион
 
@@ -12,7 +10,7 @@ public class City {
 
     private int population; // – количество жителей города
 
-    private String foundation; //  – дата основания или первое упоминание
+    private String foundation; // – дата основания или первое упоминание
 
 
     public City() {
