@@ -3,10 +3,7 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -41,18 +38,37 @@ public class Main {
             cityList.add(city);
         }
         reader.close();
-        sortedForNameAndDistrict(cityList);
+        maxPopulation(cityList);
 
     }
 
     private static void sortedForName(List<City> cityList) {
-        cityList.stream().sorted(Comparator.comparing(City::getName)).collect(Collectors.toList()).forEach(System.out::println);
+        if (cityList == null) {
+            System.out.println("directory not found");
+        } else {
+            cityList.stream().sorted(Comparator.comparing(City::getName))
+                    .collect(Collectors.toList()).forEach(System.out::println);
+        }
     }
 
     private static void sortedForNameAndDistrict(List<City> cityList) {
-        cityList.stream().sorted(Comparator.comparing(City::getDistrict).thenComparing(City::getName)).collect(Collectors.toList()).forEach(System.out::println);
+        if (cityList == null) {
+            System.out.println("directory not found");
+        } else {
+            cityList.stream().sorted(Comparator.comparing(City::getDistrict).thenComparing(City::getName))
+                    .collect(Collectors.toList()).forEach(System.out::println);
+        }
     }
 
+    private static void maxPopulation(List<City> cityList) {
+        if (cityList == null) {
+            System.out.println("directory not found");
+        } else {
+            City city = cityList.stream().max(Comparator.comparingInt(City::getPopulation)).get();
+            int number = cityList.indexOf(city);
+            System.out.println("[" + number + "] = " + city.getPopulation());
+        }
+    }
 
 
 }
